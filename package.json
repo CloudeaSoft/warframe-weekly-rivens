@@ -1,0 +1,40 @@
+{
+  "name": "warframe-weekly-rivens",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "A lightweight client for accessing Warframe weekly Riven history hosted on Cloudflare Pages.",
+  "author": "CloudeaSoft <cloudeasoft@qq.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/CloudeaSoft/warframe-weekly-rivens#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CloudeaSoft/warframe-weekly-rivens.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CloudeaSoft/warframe-weekly-rivens/issues"
+  },
+  "keywords": [
+    "warframe",
+    "riven"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "eslint",
+    "release": "pnpm run lint && pnpm run typecheck && pnpm run test && pnpm run build",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^9.1.0",
+    "@eslint/json": "^2.0.1",
+    "@vitest/coverage-v8": "4.1.9",
+    "eslint": "^10.6.0",
+    "globals": "^17.7.0",
+    "jiti": "^2.7.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.62.1",
+    "vitest": "^4.1.9"
+  }
+}

@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+jspm_packages/
+web_modules/
+
+# Build and Outputs
+lib/
+dist/
+build/
+out/
+.next/
+.nuxt/
+*.tsbuildinfo
+coverage/
+
+# Debugging and Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.eslintcache
+.stylelintcache
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+
+# Operating System Files
+.DS_Store
+Thumbs.db
