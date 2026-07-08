@@ -49,7 +49,10 @@ await client.getCoverage()
 await client.getWeeklyRivens('PC', '2026_W28')
 await client.getLatestWeek('PC')
 await client.getLatestWeeklyRivens('PC')
+await client.getRecentWeeklyRivens('PC', 4)
 ```
+
+`getRecentWeeklyRivens(platform, weeks)` uses calendar-week range semantics. For example, if the latest week is `2026_W28` and `weeks` is `4`, the method considers `2026_W25` through `2026_W28`. It fetches only files that exist in that range and does not backfill older weeks when a week is missing.
 
 Supported platforms are:
 
@@ -120,6 +123,7 @@ import type {
   RivenPlatformCoverage,
   WeekKey,
   WeeklyRiven,
+  WeeklyRivensByWeek,
 } from 'warframe-weekly-rivens'
 ```
 

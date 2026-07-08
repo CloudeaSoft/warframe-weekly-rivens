@@ -57,4 +57,46 @@ describe('client', () => {
     ])
     expect(request).toHaveBeenCalledWith('https://cdn.example.test/data/PC/2026_W28_weeklyRivensPC.json')
   })
+
+  test('gets recent weekly rivens by calendar week range without backfilling missing weeks', async () => {
+    const request = vi.fn(async (url: string) => {
+      if (url.endsWith('/dates.json')) {
+        return new Response(JSON.stringify({
+          PC: ['2026_W24', '2026_W25', '2026_W27', '2026_W28'],
+          PS4: [],
+          SWI: [],
+          XB1: [],
+        }), { status: 200 })
+      }
+
+      const week = url.includes('2026_W27') ? '2026_W27' : '2026_W28'
+      return new Response(JSON.stringify([{ itemType: `Rifle ${week}` }]), { status: 200 })
+    })
+    const client = createClient({
+      baseUrl: 'https://cdn.example.test/',
+      fetch: request,
+    })
+
+    await expect(client.getRecentWeeklyRivens('PC', 3)).resolves.toEqual([
+      {
+        rivens: [{ itemType: 'Rifle 2026_W27' }],
+        week: '2026_W27',
+      },
+      {
+        rivens: [{ itemType: 'Rifle 2026_W28' }],
+        week: '2026_W28',
+      },
+    ])
+    expect(request).toHaveBeenCalledWith('https://cdn.example.test/data/PC/2026_W27_weeklyRivensPC.json')
+    expect(request).toHaveBeenCalledWith('https://cdn.example.test/data/PC/2026_W28_weeklyRivensPC.json')
+    expect(request).not.toHaveBeenCalledWith('https://cdn.example.test/data/PC/2026_W25_weeklyRivensPC.json')
+  })
+
+  test('rejects invalid recent weekly riven range sizes', async () => {
+    const client = createClient()
+
+    await expect(client.getRecentWeeklyRivens('PC', 0)).rejects.toThrow(
+      'weeks must be a positive integer.',
+    )
+  })
 })

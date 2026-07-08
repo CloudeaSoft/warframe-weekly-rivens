@@ -28,3 +28,8 @@ export interface WeeklyRiven {
   median?: number
   [key: string]: unknown
 }
+
+export interface WeeklyRivensByWeek {
+  week: WeekKey
+  rivens: WeeklyRiven[]
+}

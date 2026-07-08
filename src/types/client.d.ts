@@ -1,5 +1,5 @@
 import type { Platform, WeekKey } from './common'
-import type { CoverageIndex, DatesIndex, WeeklyRiven } from './data'
+import type { CoverageIndex, DatesIndex, WeeklyRiven, WeeklyRivensByWeek } from './data'
 import type { FetchLike } from './transport'
 
 export interface ClientOptions {
@@ -16,4 +16,5 @@ export interface WeeklyRivensClient {
   getWeeklyRivens: (platform: Platform, week: WeekKey) => Promise<WeeklyRiven[]>
   getLatestWeek: (platform: Platform) => Promise<WeekKey>
   getLatestWeeklyRivens: (platform: Platform) => Promise<WeeklyRiven[]>
+  getRecentWeeklyRivens: (platform: Platform, weeks: number) => Promise<WeeklyRivensByWeek[]>
 }
