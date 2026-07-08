@@ -1,7 +1,7 @@
 # warframe-weekly-rivens
 
 A lightweight TypeScript SDK for reading Warframe weekly Riven history from the
-[warframe-weekly-rivens-history](https://github.com/CloudeaSoft/warframe-weekly-rivens-history)
+[warframe-weekly-rivens-archive](https://github.com/CloudeaSoft/warframe-weekly-rivens-archive)
 Cloudflare Pages CDN.
 
 This package does not ship the history data. It only builds CDN URLs, fetches JSON, and returns the CDN payloads with conservative TypeScript types.
