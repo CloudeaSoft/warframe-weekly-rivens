@@ -36,7 +36,7 @@ console.log(weeks.length, latestWeek, latestRivens[0])
 import { createClient } from 'warframe-weekly-rivens'
 
 const client = createClient({
-  baseUrl: 'https://warframe-weekly-rivens-history.pages.dev',
+  baseUrl: 'https://warframe-weekly-rivens-archive.pages.dev',
 })
 ```
 

@@ -8,13 +8,13 @@ import {
 
 describe('url builders', () => {
   test('builds index URLs from the default CDN base URL', () => {
-    expect(buildDatesUrl()).toBe('https://warframe-weekly-rivens-history.pages.dev/dates.json')
-    expect(buildCoverageUrl()).toBe('https://warframe-weekly-rivens-history.pages.dev/coverage.json')
+    expect(buildDatesUrl()).toBe('https://warframe-weekly-rivens-archive.pages.dev/dates.json')
+    expect(buildCoverageUrl()).toBe('https://warframe-weekly-rivens-archive.pages.dev/coverage.json')
   })
 
   test('builds weekly riven URLs by platform and week', () => {
     expect(buildWeeklyRivensUrl('PC', '2026_W28')).toBe(
-      'https://warframe-weekly-rivens-history.pages.dev/data/PC/2026_W28_weeklyRivensPC.json',
+      'https://warframe-weekly-rivens-archive.pages.dev/data/PC/2026_W28_weeklyRivensPC.json',
     )
   })
 

@@ -3,7 +3,7 @@ import type { Platform, WeekKey } from './types'
 /**
  * Default CDN base URL for the weekly Riven history dataset.
  */
-export const DEFAULT_CDN_BASE_URL = 'https://warframe-weekly-rivens-history.pages.dev/'
+export const DEFAULT_CDN_BASE_URL = 'https://warframe-weekly-rivens-archive.pages.dev/'
 
 const platforms = ['PC', 'PS4', 'XB1', 'SWI'] as const
 
