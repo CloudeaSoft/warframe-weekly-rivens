@@ -17,9 +17,17 @@
     "warframe",
     "riven"
   ],
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib"
+  ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "pnpm run clean && tsc -p tsconfig.build.json && pnpm run copy:types",
+    "clean": "node -e \"require('node:fs').rmSync('lib',{recursive:true,force:true})\"",
+    "copy:types": "node -e \"require('node:fs').cpSync('src/types','lib/types',{recursive:true})\"",
     "lint": "eslint",
     "release": "pnpm run lint && pnpm run typecheck && pnpm run test && pnpm run build",
     "test": "vitest",
@@ -29,6 +37,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^9.1.0",
     "@eslint/json": "^2.0.1",
+    "@types/node": "^26.1.0",
     "@vitest/coverage-v8": "4.1.9",
     "eslint": "^10.6.0",
     "globals": "^17.7.0",
