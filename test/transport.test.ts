@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, test, vi } from 'vitest'
 
-import { fetchJson } from '../src'
+import { fetchJson } from '../src/http'
 
 afterEach(() => {
   vi.unstubAllGlobals()

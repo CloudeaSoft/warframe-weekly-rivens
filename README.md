@@ -92,25 +92,6 @@ Weekly Riven files use this CDN path format:
 data/<platform>/<week>_weeklyRivens<platform>.json
 ```
 
-## Transport
-
-`fetchJson<T>(url, options?)` is the low-level transport helper:
-
-```ts
-import { fetchJson } from 'warframe-weekly-rivens'
-
-const data = await fetchJson('https://example.test/data.json')
-```
-
-It:
-
-- uses `globalThis.fetch` unless `options.fetch` is provided
-- checks `response.ok`
-- parses JSON
-- throws clear errors for HTTP and JSON parse failures
-
-It does not implement retry, cache, logging, rate limiting, proxy support, or timeout management.
-
 ## Types
 
 The exported types describe the current CDN payload shape while allowing additional fields where the upstream data may grow.
@@ -150,7 +131,7 @@ This package is intentionally limited to CDN data access.
 
 Included:
 
-- transport: fetch JSON and surface clear errors
+- internal transport: fetch JSON and surface clear errors through the client
 - URL/CDN helpers: build known CDN paths and validate platforms
 - data access: read dates, coverage, weekly Riven files, and latest-week data
 - types: conservative TypeScript declarations for CDN payloads
