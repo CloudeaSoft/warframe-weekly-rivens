@@ -16,6 +16,17 @@ import {
   buildWeeklyRivensUrl,
 } from './urls'
 
+/**
+ * Create a client for reading Warframe weekly Riven history from the CDN.
+ *
+ * The client is a thin data-access wrapper. It returns CDN payloads directly
+ * and does not perform analysis, caching, retries, or ranking.
+ *
+ * @param options - Optional client configuration.
+ * @param options.baseUrl - Custom CDN base URL. Use this for mirrors, tests, or local fixtures.
+ * @param options.fetch - Fetch-compatible function to use instead of `globalThis.fetch`.
+ * @returns A weekly Riven history client with data-access methods.
+ */
 export function createClient(options: ClientOptions = {}): WeeklyRivensClient {
   const fetchOptions = { fetch: options.fetch }
 
