@@ -53,7 +53,7 @@ describe('weekly rivens history client integration', () => {
         return
       }
 
-      if (request.url === '/data/PC/2026_W27_weeklyRivensPC.json') {
+      if (request.url === '/PC/2026_W27_weeklyRivensPC.json') {
         response.end(JSON.stringify([{ compatibility: 'Braton' }]))
         return
       }
@@ -128,7 +128,7 @@ describe('weekly rivens history client integration', () => {
     expect(requests).toEqual([
       '/dates.json',
       '/coverage.json',
-      '/data/PC/2026_W27_weeklyRivensPC.json',
+      '/PC/2026_W27_weeklyRivensPC.json',
     ])
   })
 })

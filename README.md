@@ -89,7 +89,7 @@ buildWeeklyRivensUrl('PC', '2026_W28')
 Weekly Riven files use this CDN path format:
 
 ```text
-data/<platform>/<week>_weeklyRivens<platform>.json
+<platform>/<week>_weeklyRivens<platform>.json
 ```
 
 ## Types

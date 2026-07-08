@@ -65,7 +65,7 @@ export function buildWeeklyRivensUrl(
 ): string {
   assertPlatform(platform)
 
-  return joinUrl(baseUrl, `data/${platform}/${week}_weeklyRivens${platform}.json`)
+  return joinUrl(baseUrl, `${platform}/${week}_weeklyRivens${platform}.json`)
 }
 
 function joinUrl(baseUrl: string, path: string): string {

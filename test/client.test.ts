@@ -15,7 +15,7 @@ describe('client', () => {
     await expect(client.getDates()).resolves.toEqual({ url: 'https://cdn.example.test/dates.json' })
     await expect(client.getCoverage()).resolves.toEqual({ url: 'https://cdn.example.test/coverage.json' })
     await expect(client.getWeeklyRivens('PC', '2026_W28')).resolves.toEqual({
-      url: 'https://cdn.example.test/data/PC/2026_W28_weeklyRivensPC.json',
+      url: 'https://cdn.example.test/PC/2026_W28_weeklyRivensPC.json',
     })
   })
 
@@ -55,7 +55,7 @@ describe('client', () => {
     await expect(client.getLatestWeeklyRivens('PC')).resolves.toEqual([
       { itemType: 'Rifle', compatibility: 'Braton' },
     ])
-    expect(request).toHaveBeenCalledWith('https://cdn.example.test/data/PC/2026_W28_weeklyRivensPC.json')
+    expect(request).toHaveBeenCalledWith('https://cdn.example.test/PC/2026_W28_weeklyRivensPC.json')
   })
 
   test('gets recent weekly rivens by calendar week range without backfilling missing weeks', async () => {
@@ -87,9 +87,9 @@ describe('client', () => {
         week: '2026_W28',
       },
     ])
-    expect(request).toHaveBeenCalledWith('https://cdn.example.test/data/PC/2026_W27_weeklyRivensPC.json')
-    expect(request).toHaveBeenCalledWith('https://cdn.example.test/data/PC/2026_W28_weeklyRivensPC.json')
-    expect(request).not.toHaveBeenCalledWith('https://cdn.example.test/data/PC/2026_W25_weeklyRivensPC.json')
+    expect(request).toHaveBeenCalledWith('https://cdn.example.test/PC/2026_W27_weeklyRivensPC.json')
+    expect(request).toHaveBeenCalledWith('https://cdn.example.test/PC/2026_W28_weeklyRivensPC.json')
+    expect(request).not.toHaveBeenCalledWith('https://cdn.example.test/PC/2026_W25_weeklyRivensPC.json')
   })
 
   test('rejects invalid recent weekly riven range sizes', async () => {
