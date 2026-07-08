@@ -25,11 +25,8 @@
     "lib"
   ],
   "scripts": {
-    "build": "vite build && tsc -p tsconfig.build.json --emitDeclarationOnly && pnpm run copy:types",
-    "clean": "node -e \"require('node:fs').rmSync('lib',{recursive:true,force:true})\"",
-    "copy:types": "node -e \"require('node:fs').cpSync('src/types','lib/types',{recursive:true})\"",
+    "build": "vite build && tsc -p tsconfig.build.json --emitDeclarationOnly",
     "lint": "eslint",
-    "release": "pnpm run lint && pnpm run typecheck && pnpm run test && pnpm run build",
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "typecheck": "tsc -p tsconfig.json --noEmit"
