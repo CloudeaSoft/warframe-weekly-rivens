@@ -28,6 +28,17 @@ describe('transport', () => {
     )
   })
 
+  test('throws a clear error when JSON parsing fails', async () => {
+    const request = vi.fn(async () => new Response('{', {
+      headers: { 'Content-Type': 'application/json' },
+      status: 200,
+    }))
+
+    await expect(fetchJson('https://example.test/invalid.json', { fetch: request })).rejects.toThrow(
+      'Failed to parse JSON from https://example.test/invalid.json:',
+    )
+  })
+
   test('uses global fetch by default', async () => {
     const request = vi.fn(async () => new Response(JSON.stringify(['2026_W28']), {
       status: 200,
@@ -36,5 +47,13 @@ describe('transport', () => {
 
     await expect(fetchJson('https://example.test/dates.json')).resolves.toEqual(['2026_W28'])
     expect(request).toHaveBeenCalledWith('https://example.test/dates.json')
+  })
+
+  test('rejects when no fetch implementation is available', async () => {
+    vi.stubGlobal('fetch', undefined)
+
+    await expect(fetchJson('https://example.test/dates.json')).rejects.toThrow(
+      'No fetch implementation is available.',
+    )
   })
 })

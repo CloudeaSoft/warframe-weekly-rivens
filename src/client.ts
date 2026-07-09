@@ -8,6 +8,7 @@ import type {
   WeeklyRivensByWeek,
   WeeklyRivensClient,
 } from './types'
+import { addWeeks, getIsoWeekStart } from './dates'
 import { fetchJson } from './http'
 import {
   assertPlatform,
@@ -97,27 +98,4 @@ export function createClient(options: ClientOptions = {}): WeeklyRivensClient {
     getRecentWeeklyRivens,
     getWeeklyRivens,
   }
-}
-
-function getIsoWeekStart(week: WeekKey): Date {
-  const match = /^(\d{4})_W(\d{1,2})$/.exec(week)
-
-  if (!match) {
-    throw new Error(`Invalid week key: ${week}`)
-  }
-
-  const year = Number(match[1])
-  const weekNumber = Number(match[2])
-  const januaryFourth = new Date(Date.UTC(year, 0, 4))
-  const januaryFourthDay = januaryFourth.getUTCDay() || 7
-  const firstIsoWeekStart = new Date(januaryFourth)
-  firstIsoWeekStart.setUTCDate(januaryFourth.getUTCDate() - januaryFourthDay + 1)
-
-  return addWeeks(firstIsoWeekStart, weekNumber - 1)
-}
-
-function addWeeks(date: Date, weeks: number): Date {
-  const result = new Date(date)
-  result.setUTCDate(result.getUTCDate() + weeks * 7)
-  return result
 }

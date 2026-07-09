@@ -98,5 +98,36 @@ describe('client', () => {
     await expect(client.getRecentWeeklyRivens('PC', 0)).rejects.toThrow(
       'weeks must be a positive integer.',
     )
+    await expect(client.getRecentWeeklyRivens('PC', 1.5)).rejects.toThrow(
+      'weeks must be a positive integer.',
+    )
+  })
+
+  test('rejects latest week requests when a platform has no data', async () => {
+    const request = vi.fn(async () => new Response(JSON.stringify({
+      PC: [],
+      PS4: [],
+      SWI: [],
+      XB1: [],
+    }), { status: 200 }))
+    const client = createClient({ fetch: request })
+
+    await expect(client.getLatestWeek('PC')).rejects.toThrow(
+      'No weekly Riven data is available for platform: PC',
+    )
+  })
+
+  test('rejects recent weekly riven requests when a platform has no data', async () => {
+    const request = vi.fn(async () => new Response(JSON.stringify({
+      PC: [],
+      PS4: [],
+      SWI: [],
+      XB1: [],
+    }), { status: 200 }))
+    const client = createClient({ fetch: request })
+
+    await expect(client.getRecentWeeklyRivens('PC', 1)).rejects.toThrow(
+      'No weekly Riven data is available for platform: PC',
+    )
   })
 })
