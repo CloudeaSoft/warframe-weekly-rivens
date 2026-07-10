@@ -1,7 +1,7 @@
 {
   "name": "warframe-weekly-rivens",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A lightweight client for accessing Warframe weekly Riven history hosted on Cloudflare Pages.",
   "author": "CloudeaSoft <cloudeasoft@qq.com>",
   "license": "MIT",
@@ -20,10 +20,12 @@
   "exports": {
     ".": {
       "types": "./lib/index.d.ts",
-      "import": "./lib/index.js"
+      "import": "./lib/index.js",
+      "require": "./lib/index.cjs"
     }
   },
-  "main": "./lib/index.js",
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "files": [
     "LICENSE",
