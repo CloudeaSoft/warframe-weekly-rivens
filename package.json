@@ -38,6 +38,7 @@
   "scripts": {
     "build": "vite build && tsc -p tsconfig.build.json --emitDeclarationOnly",
     "lint": "eslint",
+    "publish": "pnpm lint && pnpm build && pnpm test:coverage && pnpm typecheck && pnpm publish",
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "typecheck": "tsc -p tsconfig.json --noEmit"
